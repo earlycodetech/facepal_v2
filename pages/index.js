@@ -1,14 +1,22 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 
 export default function Home() {
-  return (
+  const [version,setVersion] = React.useState('1.0.0');
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setVersion('3.0.2')
+    }, 5000);
+  },[]) //the empty array acts so the page doesnt refresh when a content is changed
+  return ( 
     <>
       <div className="h-screen w-full flex flex-col justify-around bg">
         <Image src="/imgs/bg-mobile.jpg" width={60} height={60} className="h-screen w-full sm:hidden" alt="cover image"/>
         <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-4 px-8 sm:px-10 lg:px-24">
             <div className="w-full sm:min-h-[480px] bg-indigo-300/20 py-6 sm:py-10 px-[40px] rounded-lg">
-                <h1 className="text-indigo-800 text-4xl sm:text-6xl font-mono font-bold">facepal</h1>
+                <h1 className="text-indigo-800 text-4xl sm:text-6xl font-mono font-bold">facepal {version}</h1>
                 <h2 className="text-2xl sm:text-3xl mt-4">The Coolest way to connect with friends and hold money</h2>
             </div>
             <div className="w-full sm:min-h-[480px] flex flex-col gap-5">
