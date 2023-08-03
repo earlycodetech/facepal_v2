@@ -1,7 +1,18 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 
 export default function Home() {
+  const [version,setVersion] = React.useState('1.0.0');
+
+  React.useEffect(() =>{
+    setTimeout(() => {
+      setVersion('3.0.2')
+    },5000)
+
+    // setVersion('3.0.4')
+  },[]);
+
   return (
     <>
       <div className="h-screen w-full flex flex-col justify-around bg">
