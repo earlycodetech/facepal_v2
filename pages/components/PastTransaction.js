@@ -9,23 +9,12 @@ export function PastTransaction ({recipient,email,amount,time}) {
             </blockquote>
         </div>
 
-        <div>
-        <li>
-                    <div>
-                        <div></div>
-                        <blockquote>
-                            <span>Mary</span>
-                            <span>mary@interswitch.com</span>
-                        </blockquote>
-                    </div>
-                   
-        <div>
-                 <span className="">₦ {amount}</span>
-                 <span className="">{time} ago</span>
-        </div>
-    </li>
-
+        <div className="flex flex-row justify-between">
+            <span>₦56,00</span>
+            <span>13 hours ago</span>
+       </div>
+        </li>
     )
 }
-              
-
+               
+             
