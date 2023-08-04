@@ -1,15 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
-
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 export default function Home() {
-  const [version,setVersion] = React.useState('1.0.0');
-
-  React.useEffect(() =>{
+  const router= useRouter();
+  console.log(router.query.language);
+  useEffect(() => {
     setTimeout(() => {
-      setVersion('3.0.2')
-    },5000)
-  })
+      router.push('/account/make-transfer')
+    },5000);
+  },[]);
+  
   return (
     <>
       <div className="h-screen w-full flex flex-col justify-around bg">
