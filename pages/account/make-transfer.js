@@ -80,11 +80,13 @@ export default function MakeTransfer() {
                         email="mary@interswitch.com"
                         amount={46000}
                         time="13 hours"/>
+                        
                         <PastTransaction
                         recipient="Mary Adewale"
                         email="mary@interswitch.com"
                         amount={46000}
                         time="13 hours"/>
+
                         <PastTransaction
                         recipient="Mary Adewale"
                         email="mary@interswitch.com"
