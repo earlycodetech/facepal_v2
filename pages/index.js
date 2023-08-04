@@ -1,15 +1,27 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from 'next/router' //allows us to grab a url & helps to redirect to other pages
+import { useEffect } from 'react';
 
 export default function Home() {
+  const router = useRouter()
+  console.log(router.query.language);
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      router.push('/account/make-transfer')
+    }, 5000)
+  }, []);
+
   const [version,setVersion] = React.useState('1.0.0');
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setVersion('3.0.2')
-    }, 5000);
-  },[]) //the empty array acts so the page doesnt refresh when a content is changed
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setVersion('3.0.2')
+  //   }, 5000);
+  // },[]) //the empty array acts so the page doesnt refresh when a content is changed
   return ( 
     <>
       <div className="h-screen w-full flex flex-col justify-around bg">
