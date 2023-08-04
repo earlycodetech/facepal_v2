@@ -1,15 +1,17 @@
-import React from 'react'
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  const [version,setVersion] = React.useState('1.0.0')
+  const router = useRouter();
+  // console.log(router.query.language);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setVersion('3.0.2')
-    },5000)
-  },[])
+  // useEffect(()=>{
+  //   setTimeout(()=>{
+  //     router.push('/account/make-transfer')
+  //   },5000)
+  // },[]);
 
   return (
     <>
