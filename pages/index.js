@@ -8,11 +8,11 @@ export default function Home() {
   const router = useRouter();
   console.log(router.query.language);
 
-  useEffect(() => {
-    setTimeout(() => {
-      router.push('/account/make-transfer')
-    }, 5000);
-  },[]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     router.push('/account/make-transfer')
+  //   }, 5000);
+  // },[]);
   
   //setVersion('3.0.4)
 
