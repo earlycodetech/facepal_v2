@@ -1,23 +1,23 @@
-import { useFormik} from "formik"
+import { useFormik } from "formik";
 import * as yup from 'yup';
-import {authenthication} from '@/settings/firebase.setting';
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import { authentication } from "@/settings/firebase.setting";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-//validation rues
+//validation rules
 const validationRules = yup.object().shape({
-    email:yup.string().required('This field is compulsory'),
+    email:yup.string().required('this field is compulsory'),
     password:yup.string()
     .required()
-    .min(8, 'must be up to 8 characters')
+    .min(8,'must be up to 8 character')
     .max(36,'cannot be more than 36 characters')
     .oneOf([yup.ref('passwordConfirmation'),null],'Your password must match')
 })
 
 export default function Signup() {
-    const handleGoogleEmailPasswordCreateAccount = async (userEmail,userPasword) => {
-        createUserWithEmailAndPassword(authenthication,userEmail,userPasword)
+    const handleGoogleEmailPaswordCreateAccount = async (userEmail,userPassword) => {
+        createUserWithEmailAndPassword(authentication,userEmail,userPassword)
         .then((user) => {
-            console.log(user);
+            console.log(user)
         })
         .catch((error) => console.error(error))
     }
@@ -26,12 +26,13 @@ export default function Signup() {
         initialValues:{email:'',password:'',passwordConfirmation:''},
         onSubmit: values => {
             //create user account
-            handleGoogleEmailPasswordCreateAccount(values.email,values.password)
+            handleGoogleEmailPaswordCreateAccount(values.email,values.password)
+        
         },
-        validationSchema:validationRules
+        validationSchema:validationRules //here too
     });
 
-    return(
+    return (
         <>
         <main className="h-screen flex justify-center items-center">
             <div className="w-[480px] sm:min-h-[480px] flex flex-col gap-5">
@@ -45,8 +46,8 @@ export default function Signup() {
                     placeholder="Email address"
                     className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
                     />
-                    {errors.email && touched.email
-                    ? <span className="text-red-500">{errors.email}</span>
+                    {errors.email && touched.email 
+                    ? <span className="text-red-500">{errors.email}</span> 
                     : null}
 
                     <input 
@@ -58,21 +59,21 @@ export default function Signup() {
                     placeholder="Password"
                     className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
                     />
-                    {errors.password && touched.password
-                    ? <span className="text-red-500">{errors.password}</span>
+                    {errors.password && touched.password 
+                    ? <span className="text-red-500">{errors.password}</span> 
                     : null}
-                    
+
                     <input 
                     id="passwordConfirmation"
                     type="password" 
                     value={values.passwordConfirmation}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    placeholder="Confirm Password"
+                    placeholder="confirm password"
                     className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
                     />
                     <button type="submit" className="max-w-[160px] h-12 bg-indigo-800 rounded-lg text-white font-bold"
-                    >Create account</button>
+                    >Create Account</button>
                 </form>
         
                 <div className="w-full grid grid-cols-2 gap-3">
