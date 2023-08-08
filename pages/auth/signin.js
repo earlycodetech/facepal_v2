@@ -13,7 +13,7 @@ export default function SignIn() {
   })
 
   const { handleBlur, handleSubmit, handleChange, errors, touched, values } = useFormik({
-    initialValues: { email: '', password: '' , passwordConfirmation:''},
+    initialValues: { email: '', password: '' },
     onSubmit: values => {
       //get data from
       console.log(values.email);
@@ -75,13 +75,6 @@ export default function SignIn() {
                 Twitter
               </button>
             </div>
-
-            <p className="text-2xl text-white">
-              New to facepal?{" "}
-              <Link href="#" className="underline">
-                create account
-              </Link>
-            </p>
           </div>
         </main>
       </>
