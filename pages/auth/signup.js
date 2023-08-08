@@ -1,19 +1,33 @@
-import Link from "next/link";
 import { useFormik } from "formik";
 import * as yup from 'yup';
+import { authentication } from "@/settings/firebase.setting";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 //validation rules
 const validationRules = yup.object().shape({
     email:yup.string().required('this field is compulsory'),
-    password:yup.string().required()
+    password:yup.string()
+    .required()
+    .min(8,'must be up to 8 character')
+    .max(36,'cannot be more than 36 characters')
+    .oneOf([yup.ref('passwordConfirmation'),null],'Your password must match')
 })
 
-export default function Signin() {
+export default function Signup() {
+    const handleGoogleEmailPaswordCreateAccount = async (userEmail,userPassword) => {
+        createUserWithEmailAndPassword(authentication,userEmail,userPassword)
+        .then((user) => {
+            console.log(user)
+        })
+        .catch((error) => console.error(error))
+    }
+
     const {handleBlur,handleSubmit,handleChange,errors,touched,values} = useFormik({
-        initialValues:{email:'',password:''},
+        initialValues:{email:'',password:'',passwordConfirmation:''},
         onSubmit: values => {
-            //get data from
-            console.log(values)
+            //create user account
+            handleGoogleEmailPaswordCreateAccount(values.email,values.password)
+        
         },
         validationSchema:validationRules //here too
     });
@@ -49,16 +63,23 @@ export default function Signin() {
                     ? <span className="text-red-500">{errors.password}</span> 
                     : null}
 
+                    <input 
+                    id="passwordConfirmation"
+                    type="password" 
+                    value={values.passwordConfirmation}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="confirm password"
+                    className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
+                    />
                     <button type="submit" className="max-w-[160px] h-12 bg-indigo-800 rounded-lg text-white font-bold"
-                    >Log in to facepal</button>
+                    >Create Account</button>
                 </form>
         
                 <div className="w-full grid grid-cols-2 gap-3">
                     <button className="w-full h-12 bg-green-600 rounded-lg text-white font-bold">Google</button>
                     <button className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold">Twitter</button>
                 </div>
-        
-                <p className="text-2xl text-gray-800">New to facepal? <Link href="#" className="underline">create account</Link></p>
             </div>
         </main>
         </>
