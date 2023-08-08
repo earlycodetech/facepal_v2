@@ -1,21 +1,33 @@
 import { useFormik} from 'formik';
-import Link from 'next/link';
 import * as yup from 'yup';
+import { authentication } from '@/settings/firebase.setting';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 //validation rules
 const validationRules = yup.object().shape({
     email:yup.string().required('field is compulsory'),
-    password:yup.string().required()
+    password:yup.string().required().min(8, 'must be up to 8 characters')
+    .max(20, 'max of 20 characters')
+    //.oneOf([yup.ref('passwordConfirmation'),null],'Your password must match')
+    ,
+    passwordConfirmation:yup.string().oneOf([yup.ref('password'),null], "Passwords must match")
 })
 
-export default function Signin() {
+export default function Signup() {
+    const handleGoogleEmailPasswordCreateAccount = async (userEmail,userPassword) => {
+        createUserWithEmailAndPassword(authentication,userEmail,userPassword)
+        .then((user) => {
+            alert('Created successfully')
+        })
+        .catch((error) => console.log(error))
+    };
+
     const {handleBlur,handleSubmit,handleChange,errors,touched,values} =  useFormik({
-        initialValues:{email:'',password:''}, //the IDs are used here
-        onSubmit: values => {
-            //gets data from form
-            console.log(values)
+        initialValues:{email:'',password:'',passwordConfirmation:''}, //the IDs are used here
+        onSubmit: values => { //this block of code runs only if no errors occur
+            handleGoogleEmailPasswordCreateAccount(values.email,values.password) 
         },
-        validationSchema:validationRules //returns the yup function
+        validationSchema:validationRules //returns the yup function, and handles errors
     })
 
   return (
@@ -44,8 +56,19 @@ export default function Signin() {
                     />
                     {errors.password && touched.password ? <span className='text-red-500'>{errors.password}</span> : null}
 
+                    <input 
+                    id='passwordConfirmation'
+                    type="password" 
+                    value={values.passwordConfirmation}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Confirm Password"
+                    className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
+                    />
+                    {errors.passwordConfirmation && touched.passwordConfirmation ? <span className='text-red-500'>{errors.passwordConfirmation}</span> : null}
+
                     <button type='submit' className="max-w-[160px] h-12 bg-indigo-800 rounded-lg text-white font-bold"
-                    >Log in to facepal</button>
+                    >Create account</button>
                 </form>
         
                 <div className="w-full grid grid-cols-2 gap-3">
@@ -53,7 +76,6 @@ export default function Signin() {
                     <button className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold">Twitter</button>
                 </div>
         
-                <p className="text-2xl text-gray-800">New to facepal? <Link href="#" className="underline">create account</Link></p>
             </div>
         </main>
     </>
