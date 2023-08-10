@@ -3,21 +3,9 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
-import { useRouter } from 'next/router';
 
 export default function Home() {
   const router = useRouter();
-<<<<<<< HEAD
-  console.log(router.query.language);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     router.push('/account/make-transfer')
-  //   }, 5000);
-  // },[]);
-  
-  //setVersion('3.0.4)
-=======
   // console.log(router.query.language);
 
   // useEffect(() => {
@@ -25,7 +13,6 @@ export default function Home() {
   //     router.push('/account/make-transfer');
   //   },5000);
   // },[]);
->>>>>>> 96d55aad233f9fea4e1914751d6be0610921fbe4
 
   return (
     <>
