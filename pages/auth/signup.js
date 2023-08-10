@@ -25,11 +25,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   const handleGoogleEmailPasswordCreateAccount = async (authentication, userEmail, Password) = {
-    signInWithEmailAndPassword(authentication, userEmail, Password)
+    createUserWithEmailAndPassword(authentication, uPassword)
     .then((user) => {
       console.log(user)
     })
-    .catch((error) => console.erro(error))
+    .catch((error) => console.error(error))
   }
 
   const { handleBlur, handleSubmit, handleChange, errors, touched, values } =
