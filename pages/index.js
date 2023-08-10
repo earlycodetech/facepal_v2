@@ -39,7 +39,8 @@ export default function Home() {
                 </form>
         
                 <div className="w-full grid grid-cols-2 gap-3">
-                    <button className="w-full h-12 bg-green-600 rounded-lg text-white font-bold">Google</button>
+                    <button 
+                    className="w-full h-12 bg-green-600 rounded-lg text-white font-bold">Google</button>
                     <button className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold">Twitter</button>
                 </div>
         

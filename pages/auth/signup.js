@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import * as yup from 'yup';
 import { authentication } from "@/settings/firebase.setting";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signIn,useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 //validation rules
 const validationRules = yup.object().shape({
@@ -14,6 +16,13 @@ const validationRules = yup.object().shape({
 })
 
 export default function Signup() {
+    const {data:session} = useSession();
+    const router = useRouter();
+
+    if(session) {
+        router.push('/feeds')
+    }
+
     const handleGoogleEmailPaswordCreateAccount = async (userEmail,userPassword) => {
         createUserWithEmailAndPassword(authentication,userEmail,userPassword)
         .then((user) => {
@@ -77,7 +86,10 @@ export default function Signup() {
                 </form>
         
                 <div className="w-full grid grid-cols-2 gap-3">
-                    <button className="w-full h-12 bg-green-600 rounded-lg text-white font-bold">Google</button>
+                    <button 
+                    onClick={() => signIn('google')}
+                    className="w-full h-12 bg-green-600 rounded-lg text-white font-bold"
+                    >Google</button>
                     <button className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold">Twitter</button>
                 </div>
             </div>
