@@ -1,19 +1,30 @@
 import { useFormik} from 'formik';
 import * as yup from 'yup';
+import { signIn, useSession } from 'next-auth/react';
 import { authentication } from '@/settings/firebase.setting';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/router';
+
 
 //validation rules
 const validationRules = yup.object().shape({
     email:yup.string().required('field is compulsory'),
     password:yup.string().required().min(8, 'must be up to 8 characters')
-    .max(20, 'max of 20 characters')
+    .max(20, 'max of 20 characters'),
     //.oneOf([yup.ref('passwordConfirmation'),null],'Your password must match')
-    ,
     passwordConfirmation:yup.string().oneOf([yup.ref('password'),null], "Passwords must match")
 })
 
 export default function Signup() {
+    const {data:session} = useSession(); //shows the info of the active account
+    console.log(session) 
+
+    const router = useRouter();
+
+    if (session) { //meaning if the session is active
+        router.push('/feeds')
+    }
+
     const handleGoogleEmailPasswordCreateAccount = async (userEmail,userPassword) => {
         createUserWithEmailAndPassword(authentication,userEmail,userPassword)
         .then((user) => {
@@ -71,9 +82,16 @@ export default function Signup() {
                     >Create account</button>
                 </form>
         
-                <div className="w-full grid grid-cols-2 gap-3">
-                    <button className="w-full h-12 bg-green-600 rounded-lg text-white font-bold">Google</button>
-                    <button className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold">Twitter</button>
+                <div className="w-full grid grid-cols-3 gap-1">
+                    <button 
+                    className="w-full h-12 bg-green-600 rounded-lg text-white font-bold"
+                    onClick={() => signIn('google')}>Google</button>
+                    <button 
+                    className="w-full h-12 bg-gray-700 rounded-lg text-white font-bold"
+                    onClick={() => signIn('github')}>Github</button>
+                    <button 
+                    className="w-full h-12 bg-sky-600 rounded-lg text-white font-bold"
+                    onClick={() => signIn('twitter')}>Twitter</button>
                 </div>
         
             </div>
