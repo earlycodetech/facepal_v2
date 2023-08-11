@@ -1,5 +1,9 @@
 import '@/styles/globals.css'
-
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import  SessionProvider  from 'next-auth';
+export default function App({ Component,session,... pageProps }) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps}/>
+    </SessionProvider>
+  )
 }
