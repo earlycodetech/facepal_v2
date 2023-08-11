@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
+import { AppContext } from '@/settings/globals';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
 export default function Home() {
   const router = useRouter();
+  const {ip,signedIn} = useContext(AppContext);
+
+  console.log(ip, signedIn);
   // console.log(router.query.language);
 
   // useEffect(()=>{

@@ -10,6 +10,8 @@ export default function () {
     const {data:session} = useSession();
     const router = useRouter();
 
+    console.log(session);
+
     React.useEffect(() => {
         if (!session) {
             router.push('/auth/signup')

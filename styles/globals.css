@@ -5,7 +5,7 @@
 @layer utilities {
     
     .bg{
-        background-image: url(/public/imgs/bg.jpg);
+        background-image: url(/imgs/bg.jpg);
         background-position: center;
         background-size: cover;
     }
