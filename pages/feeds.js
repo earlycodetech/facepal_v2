@@ -20,45 +20,47 @@ export default function () {
 
   return (
     <>
-        <main className="h-screen flex justify-center bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500">
-            <div className="w-full sm:w-[400px] h-full bg-white overflow-y-scroll">
+        <main 
+        className="h-screen relative flex flex-col items-center justify-center pt-20 bg-scroll bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500">
+            <nav className="w-full h-19 flex flex-row justify-between items-center fixed top-0 left-0 right-0 bg-indigo-800 p-3">
+                <div className="flex items-center w-[48px] h-[48px] rounded-full bg-white" >
+                    <Image 
+                    width={40} 
+                    height={40} 
+                    src='/facepal_logo.png' 
+                    alt="facepal logo" />
+                </div>
+                <Image 
+                className="rounded-full" 
+                width={48} 
+                height={48}
+                src={session?.user.image} 
+                alt="profile photo" />
+            </nav>
+            <div className="w-full sm:w-[600px] h-full overflow-y-scroll p-3">
             {/*profile holder*/}
 
-                <header className="bg-indigo-300 p-3 ">
-                    <div className="flex flex-col gap-1 items-center">
-                        <div className="bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500 p-1 rounded-full">
-                            <Image 
-                            className="rounded-full" 
-                            width={58} 
-                            height={58} 
-                            src={session?.user.image} 
-                            alt="profile photo" />
-                        </div>
-                        <small className="text-gray-700"><em>{session?.user.email}</em></small>
-                        <p className="text-gray-700 font-bold">{session?.user.name}</p>
-                    </div>
+                <form className="flex flex-row justify-between items-center border border-gray-100 bg-white rounded-md p-3 mb-4 gap-4">
+                    <Image 
+                    className="rounded-full" 
+                    width={48} 
+                    height={48}
+                    src={session?.user.image} 
+                    alt="profile photo" />
 
-                    <div>
-                        <p className="text-sm mt-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias eum voluptatum distinctio rem culpa
-                            aperiam assumenda deserunt molestias,
-                            doloremque iusto adipisicing elit. Reprehenderit est vitae alias officiis!</p>
-                        
-                        <GoSignOut 
-                        className='text-gray-800 my-3'
-                        onClick={signOut}/>
-
-                        <ul className="flex flex-row justify-between mt-1">
-                            <li className="text-sm text-gray-700">🇹🇴 Abuja</li>
-                            <li className="text-sm text-gray-700">pal since 2022</li>
-                        </ul>
-                    </div>
-                </header>
+                    <textarea 
+                    className='w-full p-3 focus:outline-0 bg-gray-300 rounded-full'
+                    placeholder='Write a post'
+                    rows={1}/>
+                    <hr />
+                    
+                </form>
 
                 {/* previous posts holder */}
 
-                <div className="flex flex-col gap-2 p-3">
+                <div className="flex flex-col gap-2 gap-3">
                 
-                    <div className="border border-gray-100 rounded-md p-3">
+                    <div className="border border-gray-100 bg-white rounded-md p-3 mb-4">
                         <ul className="flex flex justify-between">
                             <li className="flex flex-row gap-1 items-center">
                                 <Image className="rounded-full" src="/imgs/opeyemi.png" width={40} height={40} alt="profile photo"/>                                
@@ -91,113 +93,6 @@ export default function () {
                         </ul>
                     </div>     
                     {/* end of single post */}
-
-
-                    <div className="border border-gray-100 rounded-md p-3">   
-                    {/* single post */}
-                        <ul className="flex justify-between">
-                            <li className="flex flex-row gap-1 items-center">
-                                <Image className="rounded-full" src="/imgs/opeyemi.png" width={40} height={40} alt="profile photo"/>                                
-                                <small className="text-gray-700">yaradua</small>
-                            </li>
-                            <li>
-                                <small className="text-gray-700">24 minutes ago</small>
-                            </li>
-                        </ul>
-                        
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, tenetur. Natus provident id quae delectus ab. Asperiores, veritatis!</p>
-
-                        <ul className="flex flex-row justify-between mt-2">
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>comments</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>likes</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>hearts</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>wows</span>
-                            </li>
-                        </ul>
-                    </div>     
-                    {/* end of single post */}
-
-
-                    <div className="border border-gray-100 rounded-md p-3">   
-                    {/* <!-- single post --> */}
-                        <ul className="flex justify-between">
-                            <li className="flex flex-row gap-1 items-center">
-                                <Image className="rounded-full" src="/imgs/opeyemi.png" width={40} height={40} alt="profile photo"/>                                
-                                <small className="text-gray-700">yaradua</small>
-                            </li>
-                            <li>
-                                <small className="text-gray-700">24 minutes ago</small>
-                            </li>
-                        </ul>
-                        
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, tenetur. Natus provident id quae delectus ab. Asperiores, veritatis!</p>
-
-                        <ul className="flex flex-row justify-between mt-2">
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>comments</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>likes</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>hearts</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>wows</span>
-                            </li>
-                        </ul>
-                    </div>     
-                    {/* <!--end of single post--> */}
-
-
-                    <div className="border border-gray-100 rounded-md p-3">   
-                    {/* <!-- single post --> */}
-                        <ul className="flex justify-between">
-                            <li className="flex flex-row gap-1 items-center">
-                                <Image className="rounded-full" src="/imgs/opeyemi.png" width={40} height={40} alt="profile photo"/>                                
-                                <small className="text-gray-700">yaradua</small>
-                            </li>
-                            <li>
-                                <small className="text-gray-700">24 minutes ago</small>
-                            </li>
-                        </ul>
-                        
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, tenetur. Natus provident id quae delectus ab. Asperiores, veritatis!</p>
-
-                        <ul className="flex flex-row justify-between mt-2">
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>comments</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>likes</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>hearts</span>
-                            </li>
-                            <li className="text-sm text-gray-500">
-                                <span>5</span>
-                                <span>wows</span>
-                            </li>
-                        </ul>
-                    </div>
 
                 </div>
             </div>
