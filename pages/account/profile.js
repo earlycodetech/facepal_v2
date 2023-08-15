@@ -18,20 +18,32 @@ export default function Feeds() {
       <main className="h-screen flex justify-center bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500">
             <div className="w-full sm:w-[400px] h-full bg-white overflow-y-scroll">
                 {/* profile holder */}
-                <header className="flex flex-row justify-between bg-indigo-300 p-3 ">
-                    <Image 
-                    width={58}
-                    height={58}
-                    className="w-auto"
-                    src="/facepal_logo.png"  
-                    alt="profile photo" /> 
+                <header className="bg-indigo-300 p-3 ">
+                    <div className="flex flex-col gap-1 items-center">
+                        <div className="bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500 p-1 rounded-full">
+                            <Image 
+                            className="rounded-full"
+                            width={58}
+                            height={58}
+                            src={session?.user.image}  
+                            alt="profile photo" />
+                        </div>
+                        <small className="text-gray-700"><em>{session?.user.email}</em></small>
+                        <p className="text-gray-700 font-bold">{session?.user.name} </p>
+                    </div> 
 
-                    <Image 
-                    className="rounded-full"
-                    width={58}
-                    height={58}
-                    src={session?.user.image}  
-                    alt="profile photo" />
+                    <div>
+                        <p className="text-sm mt-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias eum voluptatum distinctio rem culpa
+                            aperiam assumenda deserunt molestias,
+                            doloremque iusto adipisicing elit. Reprehenderit est vitae alias officiis!</p>
+                        <GoSignOut
+                         className='text-gray-800 my-3'
+                         onClick={() => signOut()}/>                      
+                        <ul className="flex flex-row justify-between mt-1">
+                            <li className="text-sm text-gray-700">🇹🇴 Abuja</li>
+                            <li className="text-sm text-gray-700">pal since 2022</li>
+                        </ul>
+                    </div>
                 </header>
 
                 {/* previous posts holder  */}
