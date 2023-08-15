@@ -1,10 +1,13 @@
 import Image from 'next/image';
+import { AppContext } from '@/settings/globals';
 import Link from "next/link";
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Home() {
   const router = useRouter()  
+  const {ip} = useContext(AppContext); //usecontext uses a curly bracket for destructuring, while useState is a square bracket
+  console.log(ip);
   // console.log(router.query.language)
   
   // useEffect(() => { //delays the block of code till the functional component has been rendered to the browser
