@@ -1,5 +1,5 @@
-export default function TransferHistory () {
+export default function TransferHistory() {
     return (
-        <p>All Transfer History here</p>
+      <p>all transfer history here</p>
     )
-}
+  }

@@ -2,15 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect,useContext } from 'react';
+import { AppContext } from '@/public/settings/global';
 export default function Home() {
   const router= useRouter();
-  console.log(router.query.language);
-  useEffect(() => {
-    setTimeout(() => {
-      router.push('/account/make-transfer')
-    },5000);
-  },[]);
+  const {ip} = useContext(AppContext)
+  //console.log(router.query.language);
+ // useEffect(() => {
+  //  setTimeout(() => {
+    //  router.push('/account/make-transfer')
+  //  },5000);
+ // },[]);
   
   return (
     <>
