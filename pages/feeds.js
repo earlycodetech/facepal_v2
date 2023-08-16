@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { GoSignOut } from 'react-icons/go';
 import { useSession,signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront'
+// import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 
 
 
@@ -38,21 +40,27 @@ export default function () {
                 alt="profile photo" />
             </nav>
             <div className="w-full sm:w-[600px] h-full overflow-y-scroll p-3">
-            {/*profile holder*/}
+            {/*feeds holder*/}
 
-                <form className="flex flex-row justify-between items-center border border-gray-100 bg-white rounded-md p-3 mb-4 gap-4">
-                    <Image 
-                    className="rounded-full" 
-                    width={48} 
-                    height={48}
-                    src={session?.user.image} 
-                    alt="profile photo" />
+                <form className="flex flex-col border border-gray-100 bg-white rounded-md p-3 mb-4 gap-4">
+                    <div className='flex flex-row justify-between items-center gap-4'>
+                        <Image 
+                        className="rounded-full" 
+                        width={48} 
+                        height={48}
+                        src={session?.user.image} 
+                        alt="profile photo" />
 
-                    <textarea 
-                    className='w-full p-3 focus:outline-0 bg-gray-300 rounded-full'
-                    placeholder='Write a post'
-                    rows={1}/>
-                    <hr />
+                        <textarea 
+                        className='w-full p-3 focus:outline-0 bg-gray-300 rounded-full'
+                        placeholder='Write a post'
+                        rows={1}/>
+                    </div>
+                    <hr style={{color:'black'}}/>
+
+                    <div>
+                        
+                    </div>
                     
                 </form>
 

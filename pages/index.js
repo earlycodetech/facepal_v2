@@ -8,6 +8,7 @@ export default function Home() {
   const router = useRouter();
   const {ip,signedIn} = useContext(AppContext);
 
+
   console.log(ip, signedIn);
   // console.log(router.query.language);
 
@@ -38,7 +39,8 @@ export default function Home() {
                     placeholder="Password"
                     className="py-3 sm:py-5 px-2 border border-indigo-400 rounded-lg bg-white/60"
                     />
-                    <button className="max-w-[160px] h-12 bg-indigo-800 rounded-lg text-white font-bold"
+                    <button 
+                    className="max-w-[160px] h-12 bg-indigo-800 rounded-lg text-white font-bold"
                     >Log in to facepal</button>
                 </form>
         
