@@ -1,19 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@mui/material';
 import { useSession,signOut } from 'next-auth/react';
 import {GoSignOut} from 'react-icons/go';
 import { useRouter } from 'next/router';
-import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront'
-import { PhotoLibraryIcon } from '@mui/icons-material/PhotoLibrary';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
-import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
-import PublicIcon from '@mui/icons-material/Public';
-import ClearIcon from '@mui/icons-material/Clear';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
 
 export default function Feeds() {
     const {data:session} = useSession();
@@ -26,60 +15,36 @@ export default function Feeds() {
     })
   return (
     <>
-      <main className="h-screen flex justify-center bg-gray-200 pt-20 bg-scroll relative flex-col items-center">
-        <nav
-        className='w-full h-19 flex flex-row justify-between items-center fixed top-0 left-0 right-0 p-2 bg-white shadow-sm'>
-
-            <div
-            className='flex items-center w-[50px] h-[50px] rounded-full bg-gray-200'>
-                <Image 
-                    width={40} 
-                    height={40} 
-                    src="/facepal_logo.png"
-                    alt="profile photo" />
-            </div>
-            <Image 
-                    className="rounded-full"
-                    width={48}
-                    height={48}
-                    src={session?.user.image} //this will render if the session is active (conditional rendering)
-                    alt="profile photo" />
-        </nav>
-            <div className="w-full sm:w-[600px] h-full bg-white overflow-y-scroll px-4">
+      <main className="h-screen flex justify-center bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500">
+            <div className="w-full sm:w-[400px] h-full bg-white overflow-y-scroll">
                 {/* profile holder */}
-                <form
-                className="flex flex-col border border-gray-100 bg-white rounded-md shadow-md p-3 mb-4 gap-4">
-                    <div className='flex flex-row justify-between items-center gap-4'>
-                        <Image
-                        className='rounded-full'
-                        width={48}
-                        height={48}
-                        src={session?.user.image}
-                        alt='profile-photo'
-                        />
-                        <textarea
-                        className='w-full p-3 focus:outline-0 bg-gray-100 rounded-full'
-                        placeholder='Write a post'
-                        rows={1}/>
+                <header className="bg-indigo-300 p-3 ">
+                    <div className="flex flex-col gap-1 items-center">
+                        <div className="bg-gradient-to-b from-indigo-500 via-sky-500 to-pink-500 p-1 rounded-full">
+                            <Image 
+                            className="rounded-full" 
+                            width={58} height={58} 
+                            src={session?.user.image} //this will render if the session is active (conditional rendering)
+                            alt="profile photo" />
+                        </div>
+                        <small className="text-gray-700"><em>{session?.user.email}</em></small>
+                        <p className="text-gray-700 font-bold">{session?.user.name}</p>
                     </div>
-                    <hr style={{color:'black'}}/>
 
-                    <div className='flex flex-row justify-between gap-5'>
-                        <button className='w-full p-2 hover:bg-gray-200 text-gray-500 rounded'>
-                            <VideoCameraFrontIcon sx={{color:'red'}}/>
-                            Live video
-                        </button>
-                        <button className='w-full p-2 hover:bg-gray-200 text-gray-500 rounded'>
-                            <VideoCameraFrontIcon sx={{color:'green'}}/>
-                            Photo/Video
-                        </button>
-                        <button className='w-full p-2 hover:bg-gray-200 text-gray-500 rounded'>
-                            <SentimentVerySatisfiedIcon sx={{color:'yellow'}}/>
-                            Feeling/Activity
-                        </button>
+                    <div>
+                        <p className="text-sm mt-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias eum voluptatum distinctio rem culpa
+                            aperiam assumenda deserunt molestias,
+                            doloremque iusto adipisicing elit. Reprehenderit est vitae alias officiis!</p>
+                        <GoSignOut 
+                        className='text-gray-800 my-3'
+                        onClick={() => signOut()}
+                        />
+                        <ul className="flex flex-row justify-between mt-1">
+                            <li className="text-sm text-gray-700">🇹🇴 Abuja</li>
+                            <li className="text-sm text-gray-700">pal since 2022</li>
+                        </ul>
                     </div>
-                    
-                </form>
+                </header>
 
                 {/* previous posts holder  */}
 
