@@ -1,7 +1,7 @@
 import { useFormik} from 'formik';
 import * as yup from 'yup';
 import { signIn, useSession } from 'next-auth/react';
-import { authentication } from '@/settings/firebase.setting';
+//import { authentication } from '@/settings/firebase.setting';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 
@@ -30,9 +30,9 @@ export default function Signup() {
     }
 
     const handleGoogleEmailPasswordCreateAccount = async (userEmail,userPassword) => {
-        createUserWithEmailAndPassword(authentication,userEmail,userPassword)
+        createUserWithEmailAndPassword(userEmail,userPassword)
         .then((user) => {
-            alert('Created successfully')
+            alert(`${user} created successfully`)
         })
         .catch((error) => console.log(error))
     };
