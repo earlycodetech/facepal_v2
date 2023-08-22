@@ -8,11 +8,15 @@ import { useRouter } from 'next/router';
 
 //validation rules
 const validationRules = yup.object().shape({
-    email:yup.string().required('field is compulsory'),
-    password:yup.string().required().min(8, 'must be up to 8 characters')
+    email:yup.string()
+    .required('field is compulsory'),
+    password:yup.string()
+    .required().
+    min(8, 'must be up to 8 characters')
     .max(20, 'max of 20 characters'),
     //.oneOf([yup.ref('passwordConfirmation'),null],'Your password must match')
-    passwordConfirmation:yup.string().oneOf([yup.ref('password'),null], "Passwords must match")
+    passwordConfirmation:yup.string()
+    .oneOf([yup.ref('password'),null], "Passwords must match")
 })
 
 export default function Signup() {
